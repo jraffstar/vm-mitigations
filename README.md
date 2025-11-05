@@ -1,5 +1,34 @@
 # Qemu/KVM Virtual Machine Mitigation Techniques
-
+## Spoofing System Information
+One of the methods that can be used to assist with software not detecting that you're running it in a virtual machine is spoofing the hardware information.
+By default, in your virtual machine it will report information like the manufacturer for example as "QEMU" or "VMware" etc. Software with anti virtual machine measures in place will likely check these details and if they return with a value that is a guaranteed virtual machine value, it will determine that the software is running in a virtual machine.
+To work around this we can replace these values with values that will be usually reported if ran in an actual PC, we will be using our own PCs information for this:
+Firstly, we will acquire our system information by running these commands:
+```
+dmidecode --type bios
+dmidecode --type baseboard
+dmidecode --type system
+```
+Using the information acquired from these commands, you can now add this to your libvirt XML configuration, preferably replacing the information with your own systems information
+```xml
+  <sysinfo type="smbios">
+    <bios>
+      <entry name="vendor">American Megatrends Inc.</entry>
+      <entry name="version">F31o</entry>
+      <entry name="date">12/03/2020</entry>
+    </bios>
+    <system>
+      <entry name="manufacturer">Gigabyte Technology Co., Ltd.</entry>
+      <entry name="product">X570 AORUS ULTRA</entry>
+      <entry name="version">x.x</entry>
+      <entry name="serial">BASEBOARD SERIAL HERE (or "Default string")</entry>
+      <entry name="uuid">BASEBOARD UUID HERE</entry>
+      <entry name="sku">BASEBOARD SKU HERE (or "Default string")</entry>
+      <entry name="family">X570 MB</entry>
+    </system>
+  </sysinfo>
+```
+If done correctly, when you check your system information in the guests operating system, it should report the values you entered in here.
 
 # Sources + Extra resources + Tools
 - <https://docs.vrchat.com/docs/using-vrchat-in-a-virtual-machine>
