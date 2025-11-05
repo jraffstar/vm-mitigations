@@ -10,7 +10,8 @@
 - <https://github.com/iaoedsz2008/libvirt-stealth>
 - <https://github.com/zhaodice/proxmox-ve-anti-detection>
 - <https://www.youtube.com/watch?v=Iass2FMHHng> / <https://pastebin.com/raw/w2UZd5GR>
-<br>
+
+
 - <https://github.com/a0rtega/pafish>
 - <https://github.com/kernelwernel/VMAware>
 - <https://github.com/Banaxi-dev/Vm-Detector>
