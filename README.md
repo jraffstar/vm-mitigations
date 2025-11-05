@@ -81,14 +81,14 @@ Very important values to add to your libvirt XML configuration are these values
 ```
 Adding these values will enable HyperV Enlightenments and allow for Nested Virtualization in your virtual machine. Make sure you enable HyperV in the virtual machine after making these changes for them to fully take action.
 ### What exactly is "Hidden State"?
-Probably one of the most important values we're adding here is "<hidden state="on"/>". KVM exposes extra vCPU internals, This includes things like: VMXON/VMCS data (Intel), VMCB/nested state (AMD), Internal APIC state, FPU extended xsave components that aren’t part of user-visible state and more. The reasoning for it exposing these in the first place is to stop the virtual machine state from breaking when doing tasks such as migrating the virtual machine, or suspending it. This information isn't usually reported, so if it is, that's a very likely sign that it is a virtual machine. Enabling Hidden State stops it from exposing this information. It also may potentially hide some parts of the vCPUs identity.
+Probably one of the most important values we're adding here is 'hidden state="on"'. KVM exposes extra vCPU internals, This includes things like: VMXON/VMCS data (Intel), VMCB/nested state (AMD), Internal APIC state, FPU extended xsave components that aren’t part of user-visible state and more. The reasoning for it exposing these in the first place is to stop the virtual machine state from breaking when doing tasks such as migrating the virtual machine, or suspending it. This information isn't usually reported, so if it is, that's a very likely sign that it is a virtual machine. Enabling Hidden State stops it from exposing this information. It also may potentially hide some parts of the vCPUs identity.
 
 ### Downsides:
 - You may experience varying amounts of performance loss after enabling these
 - You wont be able to suspend your virtual machine anymore
 
 ### Negating the performance loss:
-The other values we added such as "<relaxed state="on"/>" etc. are features that will increase performance in other ways, in effect slightly reducing the performance loss that enabling HyperV Enlightenments may cause. The one value just mentioned "Relaxed State" when enabled, tells the Guest OS that it is running on a virtual CPU so it can not waste time on waiting for certain hardware events that will not occur in a virtual machine. Even though it is telling the Guest OS that it is a virtual CPU, this shouldnt cause any virtual machine detection. However this may be subject to change in the future.
+The other values we added such as '<relaxed state="on"' etc. are features that will increase performance in other ways, in effect slightly reducing the performance loss that enabling HyperV Enlightenments may cause. The one value just mentioned "Relaxed State" when enabled, tells the Guest OS that it is running on a virtual CPU so it can not waste time on waiting for certain hardware events that will not occur in a virtual machine. Even though it is telling the Guest OS that it is a virtual CPU, this shouldnt cause any virtual machine detection. However this may be subject to change in the future.
 
 # Sources + Extra resources + Tools
 - <https://docs.vrchat.com/docs/using-vrchat-in-a-virtual-machine>
