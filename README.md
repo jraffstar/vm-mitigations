@@ -1,4 +1,8 @@
 # Qemu/KVM Virtual Machine Mitigation Techniques
+# Index
+- [Spoofing System Information](github.com/jraffstar/vm-mitigations/blob/main/README.md#spoofing-system-information)
+- [HyperV Enlightenments](https://github.com/jraffstar/vm-mitigations/blob/main/README.md#hyperv-enlightenments) 
+
 ## Spoofing System Information
 One of the methods that can be used to assist with software not detecting that you're running it in a virtual machine is spoofing the hardware information.
 By default, in your virtual machine it will report information like the manufacturer for example as "QEMU" or "VMware" etc. Software with anti virtual machine measures in place will likely check these details and if they return with a value that is a guaranteed virtual machine value, it will determine that the software is running in a virtual machine.
