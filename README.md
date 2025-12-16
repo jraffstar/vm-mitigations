@@ -32,7 +32,7 @@ Using the information acquired from these commands, you can now add this to your
     </system>
   </sysinfo>
 ```
-You could also alternatively, or alongside this, add certain qemu arguments to spoof system information
+You could also alternatively, or alongside this, add certain qemu arguments to spoof system information, here is an example:
 ```xml
 <qemu:commandline>
   <qemu:arg value="-smbios"/>
